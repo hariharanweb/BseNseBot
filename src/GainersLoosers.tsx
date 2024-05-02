@@ -1,23 +1,35 @@
 import React, {useEffect, useState} from 'react';
-import {Text} from 'react-native';
-import Api from './service/Api';
+import {FlatList} from 'react-native';
+import Api, {APIResponse} from './service/Api';
+import Entry from './components/Entry';
 
-const GainersLoosers = () => {
+const GainersLoosers = ({type = 'loosers'}) => {
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [gainers, setGainers] = useState({});
-
-  const loadData = async () => {
-    const gainersData = await Api.get();
-    setGainers(gainersData);
-    setLoaded(true);
-  };
+  const [data, setData] = useState<APIResponse>();
 
   useEffect(() => {
-    if (!loaded) {
-      loadData();
-    }
-  }, [loaded]);
-  return <Text>{JSON.stringify(gainers)}</Text>;
+    (async () => {
+      if (!loaded) {
+        const jsonData = await Api.get(type);
+        setData(jsonData);
+        setLoaded(true);
+      }
+    })();
+  }, [loaded, type]);
+
+  return (
+    loaded &&
+    data && (
+      <FlatList
+        data={data.gainersAndLoosers}
+        renderItem={({item}) => (
+          <>
+            <Entry entry={item} type={type} />
+          </>
+        )}
+      />
+    )
+  );
 };
 
 export default GainersLoosers;
