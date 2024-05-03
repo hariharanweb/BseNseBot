@@ -35,12 +35,12 @@ export enum ScreenType {
 
 const Api = {
   get: async (type: string): Promise<APIResponse> => {
-    // const resp = await fetch(
-    //   'https://k385gahq48.execute-api.ap-south-1.amazonaws.com/dev/market',
-    // );
-    // return resp.json();
-    console.log(type);
-    return Promise.resolve(rawData);
+    const resp = await fetch(
+      `https://k385gahq48.execute-api.ap-south-1.amazonaws.com/dev/market?type=${type}`,
+    );
+    return resp.json();
+    // console.log(type);
+    // return Promise.resolve(rawData);
   },
 };
 

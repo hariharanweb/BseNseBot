@@ -3,7 +3,7 @@ import {GainersAndLooser, ScreenType} from '../service/Api';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Entry = ({entry, type}: {entry: GainersAndLooser; type: ScreenType}) => {
-  const positiveNegative = type === ScreenType.LOOSERS ? '-' : '+';
+  const positiveNegative = type === ScreenType.LOOSERS ? '' : '+';
   const valueStyle =
     type === ScreenType.LOOSERS ? styles.negativeValue : styles.positiveValue;
   return (
@@ -15,7 +15,7 @@ const Entry = ({entry, type}: {entry: GainersAndLooser; type: ScreenType}) => {
       <View style={styles.newsContainer}>
         <Icon.Button
           name="finance"
-          size={36}
+          size={24}
           iconStyle={styles.iconStyle}
           onPress={() =>
             Linking.openURL(
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   newsContainer: {
     flex: 1,
-    paddingHorizontal: 4,
+    paddingHorizontal: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     marginRight: 0,
   },
   entryValue: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     alignItems: 'flex-end',
     paddingRight: 8,
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   scripName: {
     fontSize: 12,
     paddingBottom: 8,
+    fontWeight: '700',
   },
   scripLongName: {
     fontSize: 16,
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 16,
     paddingBottom: 8,
+    fontWeight: '400',
   },
   positiveValue: {
     color: 'green',
