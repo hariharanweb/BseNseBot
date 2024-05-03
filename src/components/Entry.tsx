@@ -1,10 +1,10 @@
 import React, {StyleSheet, Text, View} from 'react-native';
-import {GainersAndLooser} from '../service/Api';
+import {GainersAndLooser, ScreenType} from '../service/Api';
 
-const Entry = ({entry, type}: {entry: GainersAndLooser; type: string}) => {
-  const positiveNegative = type === 'loosers' ? '-' : '+';
+const Entry = ({entry, type}: {entry: GainersAndLooser; type: ScreenType}) => {
+  const positiveNegative = type === ScreenType.LOOSERS ? '-' : '+';
   const valueStyle =
-    type === 'loosers' ? styles.negativeValue : styles.positiveValue;
+    type === ScreenType.LOOSERS ? styles.negativeValue : styles.positiveValue;
   return (
     <View style={styles.entryContainer}>
       <View style={styles.entryDetails}>
@@ -12,7 +12,7 @@ const Entry = ({entry, type}: {entry: GainersAndLooser; type: string}) => {
         <Text style={styles.scripLongName}>{entry.LONG_NAME}</Text>
       </View>
       <View style={styles.entryValue}>
-        <Text style={styles.value}>{entry.trd_val}</Text>
+        <Text style={styles.value}>{entry.ltradert}</Text>
         <Text
           style={
             valueStyle
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   entryDetails: {
-    flex: 1,
+    flex: 3,
     flexDirection: 'column',
   },
   entryValue: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   value: {
-    fontSize: 20,
+    fontSize: 16,
     paddingBottom: 8,
   },
   positiveValue: {

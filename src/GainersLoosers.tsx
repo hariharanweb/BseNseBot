@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
-import Api, {APIResponse} from './service/Api';
+import Api, {APIResponse, ScreenType} from './service/Api';
 import Entry from './components/Entry';
 
-const GainersLoosers = ({type = 'loosers'}) => {
+const GainersLoosers = ({type = ScreenType.LOOSERS}: {type: ScreenType}) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [data, setData] = useState<APIResponse>();
 

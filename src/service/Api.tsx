@@ -28,6 +28,10 @@ export interface GainersAndLooser {
   URL: string;
   NSUrl: string;
 }
+export enum ScreenType {
+  GAINERS = 'gainers',
+  LOOSERS = 'loosers',
+}
 
 const Api = {
   get: async (type: string): Promise<APIResponse> => {

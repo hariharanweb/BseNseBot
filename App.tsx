@@ -11,12 +11,13 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {ScreenType} from './src/service/Api';
 
 const Stack = createNativeStackNavigator();
 
 const Tab = createMaterialTopTabNavigator();
-const Loosers = () => <GainersLoosers type={'loosers'} />;
-const Gainers = () => <GainersLoosers type={'gainers'} />;
+const Loosers = () => <GainersLoosers type={ScreenType.LOOSERS} />;
+const Gainers = () => <GainersLoosers type={ScreenType.GAINERS} />;
 const App = () => {
   return (
     <SafeAreaProvider>
