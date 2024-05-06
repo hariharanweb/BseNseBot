@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   entryContainer: {
     flexDirection: 'row',
     paddingHorizontal: 8,
-    paddingVertical: 16,
+    paddingVertical: 10,
     borderBlockColor: 'grey',
     borderBottomWidth: 1,
     marginHorizontal: 4,
