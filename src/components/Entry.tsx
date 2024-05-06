@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderBlockColor: 'grey',
     borderBottomWidth: 1,
+    marginHorizontal: 4,
   },
   entryDetails: {
     flex: 4,
