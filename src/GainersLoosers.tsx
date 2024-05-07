@@ -10,7 +10,13 @@ const ListHeader = (header: string) => () =>
     </View>
   );
 
-const GainersLoosers = ({type = ScreenType.LOOSERS}: {type: ScreenType}) => {
+const GainersLoosers = ({
+  type = ScreenType.LOOSERS,
+  allStocks,
+}: {
+  type: ScreenType;
+  allStocks: boolean;
+}) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [data, setData] = useState<APIResponse>();
 
@@ -24,24 +30,15 @@ const GainersLoosers = ({type = ScreenType.LOOSERS}: {type: ScreenType}) => {
     })();
   }, [loaded, type]);
 
+  const dataToDisplay = allStocks ? data?.gainersAndLoosers : data?.interesting;
+  const headerText = allStocks ? 'All Stocks' : 'Interesting';
   return (
     loaded &&
-    data && (
+    dataToDisplay && (
       <>
         <FlatList
-          data={data.interesting}
-          ListHeaderComponent={ListHeader('Interesting')}
-          stickyHeaderIndices={[0]}
-          renderItem={({item}) => (
-            <>
-              <Entry entry={item} type={type} />
-            </>
-          )}
-        />
-        <View />
-        <FlatList
-          data={data.gainersAndLoosers}
-          ListHeaderComponent={ListHeader('Others')}
+          data={dataToDisplay}
+          ListHeaderComponent={ListHeader(headerText)}
           stickyHeaderIndices={[0]}
           renderItem={({item}) => (
             <>
@@ -63,7 +60,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 20,
-  }
+  },
 });
 
 export default GainersLoosers;
